@@ -10,3 +10,6 @@
 ## Update (2026-04-28T09:47:19)
 - feat: implement caching for frequent queries
 
+## Update (2026-04-14T09:47:19)
+- perf: reduce memory footprint in background workers
+
