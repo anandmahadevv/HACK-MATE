@@ -35,7 +35,7 @@ export function AntigravityGuide({ onBack }: GuideProps) {
             <h1 className="text-xl font-bold">Antigravity Guide</h1>
           </div>
           <a
-            href="https://antigravity.dev"
+            href="https://antigravity.google/"
             target="_blank"
             rel="noopener noreferrer"
             className={`text-sm font-medium hover:underline flex items-center gap-1 ${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-900'}`}
@@ -124,7 +124,7 @@ export function AntigravityGuide({ onBack }: GuideProps) {
                 </Step>
                 <Step number="3" title="Configure Environment" desc="Create your environment file and add your API keys." isDark={isDark}>
                   <CodeBlock code="cp .env.example .env" />
-                  <p className={`text-sm mt-2 italic ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Open .env and paste your OpenAI/Anthropic API keys.</p>
+                  <p className="text-sm mt-2 italic text-gray-500">Open .env and paste your OpenAI/Anthropic API keys.</p>
                 </Step>
                 <Step number="4" title="Start the Server" desc="Launch the local development server." isDark={isDark}>
                   <CodeBlock code="npm run dev" />
@@ -202,7 +202,7 @@ function Step({ number, title, desc, children, isDark }: { number: string; title
       </div>
       <div className="flex-1 min-w-0">
         <h3 className="font-semibold">{title}</h3>
-        <p className={`text-sm mb-3 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>{desc}</p>
+        <p className={`text-sm mb-3 text-gray-500`}>{desc}</p>
         {children}
       </div>
     </div>

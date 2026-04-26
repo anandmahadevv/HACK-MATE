@@ -26,7 +26,7 @@ export function AuthStage({ onLogin, onBack }: AuthStageProps) {
   };
 
   return (
-    <div className={`relative min-h-screen flex flex-col items-center justify-center selection:bg-gray-900 selection:text-white font-sans overflow-hidden ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+    <div className={`relative min-h-screen flex flex-col items-center justify-center selection:bg-indigo-500 selection:text-white dark:selection:bg-indigo-400 font-sans overflow-hidden ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
 
       <div className={`absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem] ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
         <div className={`absolute bottom-0 left-0 right-0 top-0 ${isDark ? 'bg-[radial-gradient(circle_800px_at_100%_200px,#1f2937,transparent)]' : 'bg-[radial-gradient(circle_800px_at_100%_200px,#e5e7eb,transparent)]'}`}></div>
