@@ -15,6 +15,7 @@ import { Resources } from "./components/Resources";
 import { CaseStudies } from "./components/CaseStudies";
 import { AuthStage } from "./components/AuthStage";
 import { Footer } from "./components/Footer";
+import { ThemeProvider } from './context/ThemeContext';
 
 // Re-verify: Google Auth + Project Logic
 import { 
@@ -109,7 +110,7 @@ function App() {
   const [pendingAction, setPendingAction] = useState<{ stage: AppStage; data?: any } | null>(null);
 
   // Handlers
-  const handlePromptSubmit = (value: string) => {
+ const handlePromptSubmit = (value: string) => {
     if (!user) {
       setPendingAction({ stage: 'setup', data: value });
       setStage('auth-required');
@@ -230,7 +231,8 @@ function App() {
   };
 
   return (
-    <div className="font-sans antialiased text-gray-900 bg-gray-50 min-h-screen">
+    <ThemeProvider>
+    <div className="font-sans antialiased min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       {stage === 'landing' && (
         <>
           <HeroWave
@@ -351,7 +353,7 @@ function App() {
 
       {/* Persistent Footer for Landing and Info Stages */}
       {(stage === 'landing' || stage === 'how-it-works' || stage === 'features' || stage === 'faq' || stage === 'resources' || stage === 'case-studies') && (
-        <Footer 
+       <Footer
           onOpenHowItWorks={() => setStage('how-it-works')}
           onOpenFeatures={() => setStage('features')}
           onOpenResources={() => setStage('resources')}
@@ -359,8 +361,10 @@ function App() {
           onOpenFAQ={() => setStage('faq')}
           onOpenCaseStudies={() => setStage('case-studies')}
         />
+       
       )}
     </div>
+    </ThemeProvider>
   );
 }
 
