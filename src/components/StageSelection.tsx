@@ -91,7 +91,6 @@ export function StageSelection({ onSelectStage, projectName, onHome, onOpenResou
 
     const handleCopy = () => {
         navigator.clipboard.writeText(shareUrl);
-    };
 
     const handleAssign = async (stageId: string, name: string) => {
         await store.updateAssignment(projectId, stageId, name);
