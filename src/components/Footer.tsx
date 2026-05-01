@@ -86,7 +86,7 @@ export function Footer({
 
 function SocialLink({ href, icon, isDark }: { href: string; icon: React.ReactNode; isDark: boolean }) {
     return (
-        
+        <a
             href={href}
             target="_blank"
             rel="noreferrer"
@@ -103,7 +103,7 @@ function FooterLink({ label, onClick, href, isExternal, isDark }: { label: strin
     if (href) {
         return (
             <li>
-                
+                <a
                     href={href}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noreferrer" : undefined}
