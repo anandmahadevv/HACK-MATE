@@ -12,3 +12,4 @@
 [2026-05-04 19:33:06] Enhance error boundary logging
 [2026-05-04 19:33:07] Refactor utility functions into separate files
 [2026-05-04 19:33:08] Update dependency version comments
+[2026-05-04 19:33:08] Adjust z-index for modal overlay
