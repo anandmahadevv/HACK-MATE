@@ -37,11 +37,11 @@ Required Security Practices:
 Store all secrets in .env files
 Use .env.example for reference (no real values)
 Add .env to .gitignore
-Sensitive Keys Used:
-Firebase API keys
 
-Supabase anon/public keys
-AI provider API keys (Mistral, Gemini)
+Key Categories:
+Firebase API keys (public config; restrict by domain and Firebase rules)
+Supabase anon/public keys (public config; enforce strict RLS and policies)
+AI provider API keys (secret; must be server-side only, never exposed in client bundles)
 
 ⚠️ Even “public” keys (like Firebase/Supabase anon keys) should be handled carefully and restricted via rules.
 
