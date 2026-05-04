@@ -19,15 +19,15 @@ Instead:
 
 
 📝 Include:
-Description of the vulnerability
-Steps to reproduce
-Potential impact
-Screenshots or proof-of-concept (if applicable)
+- Description of the vulnerability
+- Steps to reproduce
+- Potential impact
+- Screenshots or proof-of-concept (if applicable)
 
 You can expect:
-✅ Acknowledgment within 48 hours
-🔍 Investigation and resolution updates
-🙏 Credit (optional) if responsibly disclosed
+- ✅ Acknowledgment within 48 hours
+- 🔍 Investigation and resolution updates
+- 🙏 Credit (optional) if responsibly disclosed
 
 🔑 Environment Variables & Secrets
 Never commit sensitive credentials to the repository.
