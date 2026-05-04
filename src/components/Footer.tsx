@@ -81,7 +81,7 @@ export function Footer({
                 </div>
             </div>
         </footer>
-    );
+    ); 
 }
 
 function SocialLink({ href, icon, isDark }: { href: string; icon: React.ReactNode; isDark: boolean }) {
