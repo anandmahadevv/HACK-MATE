@@ -121,7 +121,7 @@ export function Resources({ onBack }: { onBack: () => void }) {
                                             </span>
                                         </div>
                                         <div className="flex items-center gap-4">
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover/item:text-indigo-400">{item.type}</span>
+                                            <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-gray-300 group-hover/item:text-indigo-300' : 'text-gray-400 group-hover/item:text-indigo-400'}`}>{item.type}</span>
                                             <a
                                                 href={item.path}
                                                 download={item.name + ".md"}
@@ -142,7 +142,7 @@ export function Resources({ onBack }: { onBack: () => void }) {
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
                         <div className="max-w-xl text-center md:text-left">
                             <h2 className="text-4xl font-black mb-6">Need a custom boilerplate?</h2>
-                            <p className="text-gray-400 text-lg font-medium leading-relaxed">We're constantly updating our vault. Contribute your winning templates or request a specific stack on our GitHub.</p>
+                            <p className="text-gray-300 text-lg font-medium leading-relaxed">We're constantly updating our vault. Contribute your winning templates or request a specific stack on our GitHub.</p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
                             <button className="px-10 py-5 bg-white text-gray-900 rounded-2xl font-black hover:bg-indigo-50 hover:scale-[1.02] transition-all shadow-xl">Contact Support</button>

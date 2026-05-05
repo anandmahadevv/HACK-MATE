@@ -73,7 +73,7 @@ export function HowItWorks({ onBack }: { onBack: () => void }) {
             <main className="max-w-4xl mx-auto px-6 py-20">
                 <div className="text-center mb-20">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">The 7-Phase Hackathon Workflow</h1>
-                    <p className={`text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                         We've mapped out the exact path to a winning project. Our tool guides you through each phase with specific tools and AI prompts.
                     </p>
                 </div>
@@ -102,7 +102,7 @@ export function HowItWorks({ onBack }: { onBack: () => void }) {
                                     <h3 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{phase.title}</h3>
                                 </div>
                                 <p className={`mb-3 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{phase.desc}</p>
-                                <div className={`flex items-center gap-2 text-sm font-medium ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                                <div className={`flex items-center gap-2 text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-400'}`}>
                                     <CheckCircle2 className={`w-4 h-4 ${isDark ? 'text-gray-600' : 'text-gray-300'}`} />
                                     {phase.sub}
                                 </div>
@@ -111,7 +111,7 @@ export function HowItWorks({ onBack }: { onBack: () => void }) {
                     ))}
                 </div>
 
-                <div className="mt-24 p-12 bg-gray-900 rounded-[2.5rem] text-white text-center">
+                <div className="mt-24 p-12 bg-gray-900 rounded-[2.5rem] text-white text-center dark:bg-gray-800">
                     <h2 className="text-3xl font-bold mb-4">Ready to start your journey?</h2>
                     <p className="text-gray-400 mb-8 max-w-md mx-auto">Skip the setup and start building. Our tool handles the strategy while you focus on the code.</p>
                     <button

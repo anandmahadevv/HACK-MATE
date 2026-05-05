@@ -41,7 +41,7 @@ export function AuthStage({ onLogin, onBack }: AuthStageProps) {
           <h2 className="text-3xl font-black mb-2 tracking-tight">
             Authentication Required
           </h2>
-          <p className={isDark ? 'text-gray-400' : 'text-gray-500'}>
+          <p className={isDark ? 'text-gray-300' : 'text-gray-500'}>
             Please sign in with your Google account to access and save your hackathon projects.
           </p>
         </div>
@@ -67,13 +67,13 @@ export function AuthStage({ onLogin, onBack }: AuthStageProps) {
         <button
           onClick={onBack}
           disabled={loading}
-          className={`mt-8 text-sm font-bold transition-colors w-full disabled:opacity-50 ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-900'}`}
+          className={`mt-8 text-sm font-bold transition-colors w-full disabled:opacity-50 ${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-500 hover:text-gray-900'}`}
         >
           ← Go Back to Landing Page
         </button>
       </div>
 
-      <p className={`fixed bottom-8 text-xs font-bold tracking-[0.2em] uppercase ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>
+      <p className="fixed bottom-8 text-xs font-bold tracking-[0.2em] uppercase text-gray-400">
         Hackathon Copilot Security
       </p>
     </div>

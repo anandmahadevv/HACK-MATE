@@ -89,11 +89,11 @@ export function AntigravityGuide({ onBack }: GuideProps) {
                     <li>• Creating database schemas</li>
                   </ul>
                 </div>
-                <div className="p-5 bg-amber-50 rounded-xl border border-amber-100">
-                  <h3 className="font-semibold text-amber-900 mb-2 flex items-center gap-2">
+                <div className={`p-5 rounded-xl border ${isDark ? 'bg-amber-950/40 border-amber-900/50 text-amber-200' : 'bg-amber-50 border-amber-100 text-amber-900'}`}>
+                  <h3 className={`font-semibold mb-2 flex items-center gap-2 ${isDark ? 'text-amber-200' : 'text-amber-900'}`}>
                     <AlertCircle className="w-4 h-4" /> When NOT to use it
                   </h3>
-                  <ul className="space-y-2 text-sm text-amber-800/80">
+                  <ul className={`space-y-2 text-sm ${isDark ? 'text-amber-200/80' : 'text-amber-800/80'}`}>
                     <li>• Debugging specific logic errors</li>
                     <li>• Minor text edits or CSS tweaks</li>
                     <li>• Deploying to production</li>
@@ -124,7 +124,7 @@ export function AntigravityGuide({ onBack }: GuideProps) {
                 </Step>
                 <Step number="3" title="Configure Environment" desc="Create your environment file and add your API keys." isDark={isDark}>
                   <CodeBlock code="cp .env.example .env" />
-                  <p className="text-sm mt-2 italic text-gray-500">Open .env and paste your OpenAI/Anthropic API keys.</p>
+                  <p className={`text-sm mt-2 italic ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Open .env and paste your OpenAI/Anthropic API keys.</p>
                 </Step>
                 <Step number="4" title="Start the Server" desc="Launch the local development server." isDark={isDark}>
                   <CodeBlock code="npm run dev" />
@@ -202,7 +202,7 @@ function Step({ number, title, desc, children, isDark }: { number: string; title
       </div>
       <div className="flex-1 min-w-0">
         <h3 className="font-semibold">{title}</h3>
-        <p className={`text-sm mb-3 text-gray-500`}>{desc}</p>
+        <p className={`text-sm mb-3 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{desc}</p>
         {children}
       </div>
     </div>

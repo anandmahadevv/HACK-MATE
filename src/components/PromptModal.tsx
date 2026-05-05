@@ -53,7 +53,7 @@ export function PromptModal({ isOpen, onClose, onSubmit, title, placeholder, def
                     onClick={onClose}
                     className={`absolute top-6 right-6 p-2 rounded-full transition-colors ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}
                 >
-                    <X className="w-5 h-5 text-gray-400" />
+                    <X className={`w-5 h-5 ${isDark ? 'text-gray-300' : 'text-gray-400'}`} />
                 </button>
 
                 <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
@@ -69,10 +69,10 @@ export function PromptModal({ isOpen, onClose, onSubmit, title, placeholder, def
                             className={`w-full px-5 py-4 rounded-2xl border focus:ring-4 transition-all font-medium outline-none ${error
                                 ? 'border-red-500 focus:ring-red-100'
                                 : isDark
-                                    ? 'bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 focus:border-gray-400 focus:ring-gray-600/30'
+                                    ? 'bg-gray-700 border-gray-600 text-white placeholder:text-gray-400 focus:border-gray-400 focus:ring-gray-600/30'
                                     : 'bg-white border-gray-200 text-gray-900 focus:border-gray-900 focus:ring-gray-900/5'}`}
                         />
-                        <div className={`absolute right-4 bottom-2 text-[10px] font-bold ${error ? 'text-red-500' : 'text-gray-400'}`}>
+                        <div className={`absolute right-4 bottom-2 text-[10px] font-bold ${error ? 'text-red-500' : isDark ? 'text-gray-300' : 'text-gray-400'}`}>
                             {value.length}/{maxLength}
                         </div>
                     </div>
@@ -85,7 +85,7 @@ export function PromptModal({ isOpen, onClose, onSubmit, title, placeholder, def
                         <button
                             type="button"
                             onClick={onClose}
-                            className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all ${isDark ? 'text-gray-400 hover:bg-gray-700 hover:text-white' : 'text-gray-500 hover:bg-gray-100'}`}
+                            className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all ${isDark ? 'text-gray-300 hover:bg-gray-700 hover:text-white' : 'text-gray-500 hover:bg-gray-100'}`}
                         >
                             Cancel
                         </button>

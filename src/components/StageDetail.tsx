@@ -360,7 +360,7 @@ export function StageDetail({ stageId, onBack, onOpenResources, project }: Stage
                         <h2 className="text-2xl sm:text-3xl font-extrabold mb-4">Phase Strategy</h2>
                         <p className={`text-lg sm:text-xl leading-relaxed mb-6 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{data.expl}</p>
                         {data.warning && (
-                            <div className="mt-6 p-4 bg-amber-50 border border-amber-100 rounded-2xl flex gap-3 text-amber-800 text-xs sm:text-sm font-medium">
+                            <div className={`mt-6 p-4 rounded-2xl flex gap-3 text-xs sm:text-sm font-medium ${isDark ? 'bg-amber-950/40 border border-amber-900/50 text-amber-200' : 'bg-amber-50 border border-amber-100 text-amber-800'}`}>
                                 <AlertCircle className="w-5 h-5 shrink-0" />
                                 {data.warning}
                             </div>
@@ -391,7 +391,7 @@ export function StageDetail({ stageId, onBack, onOpenResources, project }: Stage
                                     <a key={i} href={alt.url} target="_blank" className={`p-4 rounded-2xl border hover:shadow-lg transition-all flex justify-between items-center group ${isDark ? 'bg-gray-700 border-gray-600 hover:border-gray-400' : 'bg-white border-gray-100 hover:border-gray-900/10'}`}>
                                         <div>
                                             <div className="font-bold">{alt.name}</div>
-                                            <div className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-400'}`}>{alt.why}</div>
+                                            <div className={`text-xs ${isDark ? 'text-gray-300' : 'text-gray-400'}`}>{alt.why}</div>
                                         </div>
                                         <ExternalLink className={`w-4 h-4 transition-colors ${isDark ? 'text-gray-500 group-hover:text-white' : 'text-gray-300 group-hover:text-black'}`} />
                                     </a>
@@ -495,7 +495,7 @@ export function StageDetail({ stageId, onBack, onOpenResources, project }: Stage
                                 placeholder="Add a note for the team..."
                                 className={`w-full border rounded-xl py-3 pl-4 pr-12 text-sm font-medium focus:outline-none focus:ring-4 transition-all ${isDark ? 'bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 focus:ring-gray-600/30 focus:border-gray-500' : 'bg-white border-gray-200 focus:ring-gray-900/5 focus:border-gray-900'}`}
                             />
-                            <button type="submit" className="absolute right-2 top-2 p-1.5 bg-gray-900 text-white rounded-lg hover:bg-black transition-colors">
+                            <button type="submit" className="absolute right-2 top-2 p-1.5 bg-gray-900 text-white rounded-lg hover:bg-black transition-colors dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100">
                                 <Send className="w-4 h-4" />
                             </button>
                         </form>

@@ -109,7 +109,7 @@ export function StageSelection({ onSelectStage, projectName, onHome, onOpenResou
                             <Sparkles className="w-3 h-3" /> Active Project
                         </div>
                         <h1 className={`text-4xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{projectName}</h1>
-                        <p className={`mt-2 font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Click on a phase to start working on your roadmap.</p>
+                        <p className={`mt-2 font-medium ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>Click on a phase to start working on your roadmap.</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <button
@@ -146,7 +146,7 @@ export function StageSelection({ onSelectStage, projectName, onHome, onOpenResou
                                     <Share2 className="w-8 h-8" />
                                 </div>
                                 <h3 className={`text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Invite your team</h3>
-                                <p className={`font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Copy this link to share your project roadmap and collaborate in real-time.</p>
+                                <p className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>Copy this link to share your project roadmap and collaborate in real-time.</p>
                             </div>
 
                             <div className={`p-6 rounded-2xl border mb-6 ${isDark ? 'bg-indigo-950/50 border-indigo-800' : 'bg-indigo-50/50 border-indigo-100'}`}>
@@ -179,7 +179,7 @@ export function StageSelection({ onSelectStage, projectName, onHome, onOpenResou
                                     {linkCopied ? 'Copied' : 'Copy Link'}
                                 </button>
                             </div>
-                            <p className={`text-center text-xs font-medium italic mt-2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>NOTE: Real-time syncing is enabled for both ID and Link access.</p>
+                            <p className={`text-center text-xs font-medium italic mt-2 ${isDark ? 'text-gray-400' : 'text-gray-400'}`}>NOTE: Real-time syncing is enabled for both ID and Link access.</p>
                         </div>
                     </div>
                 )}
@@ -210,16 +210,16 @@ export function StageSelection({ onSelectStage, projectName, onHome, onOpenResou
                             </div>
 
                             <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{stage.title}</h3>
-                            <p className={`text-sm font-medium mb-6 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Phase {i + 1} of 8</p>
+                            <p className={`text-sm font-medium mb-6 ${isDark ? 'text-gray-300' : 'text-gray-400'}`}>Phase {i + 1} of 8</p>
 
                             <div className={`flex items-center justify-between pt-6 border-t transition-colors ${isDark ? 'border-gray-700 group-hover:border-gray-600' : 'border-gray-50 group-hover:border-gray-200'}`}>
-                                <span className={`text-xs font-bold flex items-center gap-2 transition-colors ${isDark ? 'text-gray-600 group-hover:text-white' : 'text-gray-300 group-hover:text-gray-900'}`}>
+                                <span className={`text-xs font-bold flex items-center gap-2 transition-colors ${isDark ? 'text-gray-300 group-hover:text-white' : 'text-gray-300 group-hover:text-gray-900'}`}>
                                     View Phase <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                 </span>
                                 <div className="relative" onClick={(e) => e.stopPropagation()}>
                                     <button
                                         onClick={() => setAssigningStage(stage.id)}
-                                        className={`p-2 rounded-lg transition-all border border-transparent ${isDark ? 'bg-gray-700 hover:bg-gray-600 text-gray-400 hover:text-white hover:border-gray-500' : 'bg-gray-50 hover:bg-gray-100 text-gray-400 hover:text-gray-900 hover:border-gray-200'}`}
+                                        className={`p-2 rounded-lg transition-all border border-transparent ${isDark ? 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white hover:border-gray-500' : 'bg-gray-50 hover:bg-gray-100 text-gray-400 hover:text-gray-900 hover:border-gray-200'}`}
                                     >
                                         <UserPlus className="w-4 h-4" />
                                     </button>

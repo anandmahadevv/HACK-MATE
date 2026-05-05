@@ -74,7 +74,7 @@ export function CaseStudies({ onBack }: { onBack: () => void }) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {cases.map((c, i) => (
                         <div key={i} className="group flex flex-col animate-in fade-in slide-in-from-bottom-8 duration-700" style={{ animationDelay: `${i * 150}ms` }}>
-                            <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-6 shadow-2xl shadow-gray-200">
+                            <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-6 shadow-2xl shadow-gray-200 dark:shadow-gray-900/50">
                                 <img src={c.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={c.name} />
                                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                                     <button className="bg-white text-gray-900 px-6 py-3 rounded-xl font-bold flex items-center gap-2 text-sm">
@@ -89,7 +89,7 @@ export function CaseStudies({ onBack }: { onBack: () => void }) {
                             </div>
                             <div className="px-4">
                                 <h3 className={`text-2xl font-black mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{c.name}</h3>
-                                <p className={`font-bold text-sm mb-4 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{c.hackathon} • {c.team}</p>
+                                <p className={`font-bold text-sm mb-4 ${isDark ? 'text-gray-300' : 'text-gray-400'}`}>{c.hackathon} • {c.team}</p>
                                 <div className={`p-6 rounded-2xl mb-6 relative italic text-sm border ${isDark
                                     ? 'bg-gray-800 border-gray-700 text-gray-300'
                                     : 'bg-gray-50 border-gray-100 text-gray-600'}`}>
