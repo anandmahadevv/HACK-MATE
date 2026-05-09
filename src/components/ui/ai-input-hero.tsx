@@ -22,15 +22,15 @@ export type HeroWaveProps = {
     onLogout?: () => void;
 };
 
-export function HeroWave({ 
-    onPromptSubmit, 
-    onResumeProject, 
+export function HeroWave({
+    onPromptSubmit,
+    onResumeProject,
     onDeleteProject,
-    onOpenGuide, 
-    onOpenFeatures, 
-    onOpenHowItWorks, 
-    onOpenFAQ, 
-    onOpenResources, 
+    onOpenGuide,
+    onOpenFeatures,
+    onOpenHowItWorks,
+    onOpenFAQ,
+    onOpenResources,
     onOpenCaseStudies,
     user,
     onJoinTeam,
@@ -52,7 +52,7 @@ export function HeroWave({
 
     useEffect(() => {
         fetchRecent();
-        
+
         // Listen for internal refresh events
         window.addEventListener('project-list-updated', fetchRecent);
         return () => window.removeEventListener('project-list-updated', fetchRecent);
@@ -111,7 +111,7 @@ export function HeroWave({
                         </div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-br from-gray-900 dark:from-white to-gray-600 dark:to-gray-300 font-black">Hackathon Copilot</span>
                     </div>
-                    
+
                     <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-gray-500 dark:text-gray-400">
                         <button onClick={onOpenHowItWorks} className="hover:text-gray-900 transition-colors relative group">
                             How it Works
@@ -129,9 +129,9 @@ export function HeroWave({
                             Success Stories
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 transition-all group-hover:w-full" />
                         </button>
-                        
+
                         <div className="h-6 w-px bg-gray-200 mx-1" />
-                        
+
                         {user ? (
                             <div className="flex items-center gap-4 pl-2">
                                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200 shadow-sm">
@@ -147,7 +147,7 @@ export function HeroWave({
                                 Sign In
                             </button>
                         )}
-                        <button 
+                        <button
                             onClick={() => {
                                 setIsJoining(true);
                                 window.scrollTo({ top: 300, behavior: 'smooth' });
@@ -233,7 +233,7 @@ export function HeroWave({
                                 <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
                             </button>
                         ))}
-                        
+
                         {user && (
                             <div className="pt-6 mt-4 border-t border-gray-100">
                                 <button
@@ -309,9 +309,9 @@ export function HeroWave({
                                 <h3 className="text-xl font-black text-gray-900">Join Your Team</h3>
                                 <p className="text-sm text-gray-500">Enter the unique Team ID shared by your teammate.</p>
                              </div>
-                             <form 
-                                onSubmit={async (e) => { 
-                                    e.preventDefault(); 
+                             <form
+                                onSubmit={async (e) => {
+                                    e.preventDefault();
                                     if (!teamIdInput.trim()) return;
                                     setIsSubmitting(true);
                                     const fullId = teamIdInput.toUpperCase().startsWith('HM-') ? teamIdInput.toUpperCase() : `HM-${teamIdInput.toUpperCase()}`;
@@ -320,22 +320,23 @@ export function HeroWave({
                                     } finally {
                                         setIsSubmitting(false);
                                     }
-                                }} 
+                                }}
                                 className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-indigo-50 rounded-2xl sm:rounded-[2rem] shadow-2xl border-2 border-indigo-200 p-2 focus-within:ring-4 focus-within:ring-indigo-100 transition-all"
                             >
                                 <div className="flex-1 relative">
                                     <Code2 className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-indigo-400" />
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         value={teamIdInput}
                                         onChange={(e) => setTeamIdInput(e.target.value.toUpperCase())}
+                                        maxLength={12}
                                         placeholder="HM-XXXXXX"
                                         disabled={isSubmitting}
                                         className="w-full h-14 sm:h-20 pl-16 pr-4 bg-transparent border-none text-indigo-900 placeholder:text-indigo-200 focus:ring-0 text-2xl font-black tracking-widest uppercase disabled:opacity-50"
                                         autoFocus
                                     />
                                 </div>
-                                <button 
+                                <button
                                     type="submit"
                                     disabled={isSubmitting}
                                     className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white h-12 sm:h-16 py-4 px-12 rounded-xl sm:rounded-full font-black text-lg transition-all flex items-center justify-center gap-3 shadow-lg shadow-indigo-600/20"
@@ -350,7 +351,7 @@ export function HeroWave({
                                     )}
                                 </button>
                             </form>
-                            <button 
+                            <button
                                 onClick={() => setIsJoining(false)}
                                 className="mt-6 text-xs font-black text-gray-400 hover:text-indigo-500 uppercase tracking-widest text-center block mx-auto py-2 px-4 rounded-xl hover:bg-gray-50 transition-all"
                             >
@@ -366,6 +367,7 @@ export function HeroWave({
                                         type="text"
                                         value={prompt}
                                         onChange={(e) => setPrompt(e.target.value)}
+                                        maxLength={500}
                                         placeholder="Paste your problem statement..."
                                         className="w-full h-14 sm:h-16 pl-14 pr-4 bg-transparent border-none text-gray-900 placeholder:text-gray-400 focus:ring-0 text-base sm:text-lg font-medium"
                                         autoFocus
@@ -384,7 +386,7 @@ export function HeroWave({
                                     <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">Already have a team?</span>
                                     <div className="h-px w-8 bg-gray-100" />
                                 </div>
-                                <button 
+                                <button
                                     onClick={() => setIsJoining(true)}
                                     className="px-8 py-3 rounded-2xl bg-indigo-50 text-indigo-600 font-bold text-sm hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-105 shadow-sm border border-indigo-100"
                                 >
@@ -514,7 +516,7 @@ export function HeroWave({
                                                 <Clock className="w-2.5 h-2.5 text-gray-400" />
                                             </div>
                                         </button>
-                                        <button 
+                                        <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 onDeleteProject?.(p.id);
