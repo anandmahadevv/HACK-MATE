@@ -87,7 +87,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                             <label className={`block text-sm font-bold flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                 <Trophy className="w-4 h-4 text-gray-400" /> Hackathon Name
                             </label>
-                            <input type="text" required className={inputClass} placeholder="e.g. Meta Hackathon 2026" value={name} onChange={(e) => setName(e.target.value)} />
+                            <input type="text" required maxLength={100} className={inputClass} placeholder="e.g. Meta Hackathon 2026" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
 
                         <div className="space-y-3">
@@ -133,7 +133,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                         <label className={`block text-sm font-bold flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                             <Target className="w-4 h-4 text-red-500" /> Problem Statement
                         </label>
-                        <textarea required rows={4} className={`${inputClass} resize-none`} placeholder="Briefly describe what you're building..." value={problem} onChange={(e) => setProblem(e.target.value)} />
+                        <textarea required maxLength={500} rows={4} className={`${inputClass} resize-none`} placeholder="Briefly describe what you're building..." value={problem} onChange={(e) => setProblem(e.target.value)} />
                     </div>
 
                     {/* Judging Focus */}
@@ -199,7 +199,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                         </div>
                         {isCustomTime && (
                             <div className="animate-in fade-in slide-in-from-top-2 duration-200">
-                                <input type="number" required min="1" className={inputClass} placeholder="Enter hours..." value={timeLeft} onChange={(e) => setTimeLeft(e.target.value)} autoFocus />
+                                <input type="number" required max="168" min="1" className={inputClass} placeholder="Enter hours..." value={timeLeft} onChange={(e) => setTimeLeft(e.target.value)} autoFocus />
                             </div>
                         )}
                     </div>
