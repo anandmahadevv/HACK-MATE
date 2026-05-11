@@ -21,17 +21,23 @@ jobs:
             const pr = context.payload.pull_request;
 
             const body = pr.body || "";
-            const title = (pr.title || "").toLowerCase();
+            const title = pr.title || "";
+
+            const lowerBody = body.toLowerCase();
+            const lowerTitle = title.toLowerCase();
 
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const prNumber = pr.number;
 
-            const lowerBody = body.toLowerCase();
-
             // =====================================================
             // 🔍 ISSUE VALIDATION
             // =====================================================
+
+            // Required format:
+            // Closes #12
+            // Fixes #12
+            // Resolves #12
 
             const match = body.match(
               /(close[sd]?|fix(e[sd])?|resolve[sd]?)\s+#(\d+)/i
@@ -50,7 +56,11 @@ jobs:
                   issue_number: issueNumber
                 });
 
-                // Ensure linked item is an ISSUE and OPEN
+                // Must be:
+                // 1. real issue
+                // 2. not another PR
+                // 3. open
+
                 if (
                   !issue.data.pull_request &&
                   issue.data.state === "open"
@@ -64,7 +74,7 @@ jobs:
             }
 
             // =====================================================
-            // ❌ INVALID PR → COMMENT + CLOSE
+            // ❌ INVALID PR
             // =====================================================
 
             if (!validIssue) {
@@ -74,12 +84,14 @@ jobs:
                 repo,
                 issue_number: prNumber,
                 body:
-                  "❌ This PR has been automatically closed.\n\n" +
+                  "❌ This PR was automatically closed.\n\n" +
                   "Reason:\n" +
-                  "- No valid OPEN issue linked\n\n" +
+                  "- No valid OPEN issue linked.\n\n" +
                   "Please link an open issue using:\n\n" +
                   "`Closes #issue_number`\n\n" +
-                  "You can reopen the PR after updating the description."
+                  "Example:\n" +
+                  "`Closes #12`\n\n" +
+                  "After updating the PR description, you may reopen this PR."
               });
 
               await github.rest.pulls.update({
@@ -93,99 +105,111 @@ jobs:
             }
 
             // =====================================================
-            // 🏷️ SMART LABELING
+            // 🏷️ STRICT LABELING
             // =====================================================
 
             let labels = [];
 
+            // -----------------------------------------------------
+            // TYPE LABELS
+            // -----------------------------------------------------
+
             // 🐛 BUG
             if (
-              title.includes("fix") ||
-              lowerBody.includes("bug") ||
-              lowerBody.includes("error")
+              /^fix(\(|:)/i.test(title) ||
+              lowerTitle.includes("bugfix") ||
+              lowerBody.includes("fixes bug") ||
+              lowerBody.includes("bug fix")
             ) {
               labels.push("bug");
             }
 
             // ✨ ENHANCEMENT
             if (
-              title.includes("feat") ||
-              title.includes("feature") ||
-              lowerBody.includes("enhancement")
+              /^feat(\(|:)/i.test(title) ||
+              lowerBody.includes("new feature") ||
+              lowerBody.includes("adds feature")
             ) {
               labels.push("enhancement");
             }
 
             // 📚 DOCUMENTATION
             if (
-              lowerBody.includes("documentation") ||
-              lowerBody.includes("docs") ||
-              title.includes("readme")
+              /^docs(\(|:)/i.test(title) ||
+              lowerBody.includes("documentation update") ||
+              lowerBody.includes("readme update")
             ) {
               labels.push("documentation");
             }
 
             // ♻️ REFACTOR
             if (
-              lowerBody.includes("refactor") ||
-              title.includes("cleanup")
+              /^refactor(\(|:)/i.test(title) ||
+              lowerBody.includes("code cleanup") ||
+              lowerBody.includes("major cleanup") ||
+              lowerBody.includes("refactor")
             ) {
               labels.push("refactor");
             }
 
             // 🔐 SECURITY
             if (
-              lowerBody.includes("security") ||
-              lowerBody.includes("vulnerability")
+              /^security(\(|:)/i.test(title) ||
+              lowerBody.includes("security fix") ||
+              lowerBody.includes("vulnerability patch")
             ) {
               labels.push("security");
             }
 
+            // -----------------------------------------------------
+            // AREA LABELS
+            // -----------------------------------------------------
+
             // 🎨 FRONTEND
             if (
-              lowerBody.includes("frontend") ||
-              lowerBody.includes("ui") ||
-              lowerBody.includes("react") ||
-              lowerBody.includes("tailwind") ||
-              lowerBody.includes("css")
+              lowerBody.includes("frontend component") ||
+              lowerBody.includes("ui change") ||
+              lowerBody.includes("tailwind styling") ||
+              lowerBody.includes("react component") ||
+              lowerBody.includes("css update")
             ) {
               labels.push("frontend");
             }
 
             // ⚙️ BACKEND
             if (
-              lowerBody.includes("backend") ||
-              lowerBody.includes("api") ||
-              lowerBody.includes("server")
+              lowerBody.includes("backend api") ||
+              lowerBody.includes("server route") ||
+              lowerBody.includes("api endpoint")
             ) {
               labels.push("backend");
             }
 
             // 🗄️ DATABASE
             if (
-              lowerBody.includes("database") ||
-              lowerBody.includes("sql") ||
-              lowerBody.includes("schema") ||
-              lowerBody.includes("firebase") ||
-              lowerBody.includes("supabase")
+              lowerBody.includes("database schema") ||
+              lowerBody.includes("sql migration") ||
+              lowerBody.includes("supabase table") ||
+              lowerBody.includes("firebase config")
             ) {
               labels.push("database");
             }
 
             // 🤖 AI
             if (
-              lowerBody.includes("ai") ||
-              lowerBody.includes("openai") ||
-              lowerBody.includes("prompt")
+              lowerBody.includes("openai integration") ||
+              lowerBody.includes("ai feature") ||
+              lowerBody.includes("prompt engineering") ||
+              lowerBody.includes("llm response")
             ) {
               labels.push("ai");
             }
 
             // ⚙️ WORKFLOW
             if (
-              lowerBody.includes("workflow") ||
+              lowerBody.includes("github workflow") ||
               lowerBody.includes("github action") ||
-              lowerBody.includes("ci")
+              lowerBody.includes("ci pipeline")
             ) {
               labels.push("workflow");
             }
@@ -198,16 +222,18 @@ jobs:
             // =====================================================
 
             if (labels.length > 0) {
+
               await github.rest.issues.addLabels({
                 owner,
                 repo,
                 issue_number: prNumber,
                 labels
               });
+
             }
 
             // =====================================================
-            // 👤 AUTO ASSIGN OWNER
+            // 👤 AUTO ASSIGN REPO OWNER
             // =====================================================
 
             await github.rest.issues.addAssignees({
