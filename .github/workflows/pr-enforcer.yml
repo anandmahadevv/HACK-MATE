@@ -1,4 +1,4 @@
-name: PR Enforcer (Advanced OSS Protection)
+name: PR Enforcer
 
 on:
   pull_request_target:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Validate, Label, Assign and Control PR
+      - name: Validate and Manage PR
         uses: actions/github-script@v7
         with:
           script: |
@@ -39,211 +39,47 @@ jobs:
 
             let issueNumber = match ? parseInt(match[3]) : null;
 
-            let issueExists = false;
-            let issueOpen = false;
+            let validIssue = false;
 
             if (issueNumber) {
               try {
+
                 const issue = await github.rest.issues.get({
                   owner,
                   repo,
                   issue_number: issueNumber
                 });
 
-                // Ensure it is NOT another PR
-                if (!issue.data.pull_request) {
-                  issueExists = true;
-
-                  if (issue.data.state === "open") {
-                    issueOpen = true;
-                  }
+                // Ensure linked item is an ISSUE and OPEN
+                if (
+                  !issue.data.pull_request &&
+                  issue.data.state === "open"
+                ) {
+                  validIssue = true;
                 }
 
               } catch (err) {
-                issueExists = false;
+                validIssue = false;
               }
             }
 
             // =====================================================
-            // 🏷️ ADVANCED LABEL SYSTEM
+            // ❌ INVALID PR → COMMENT + CLOSE
             // =====================================================
 
-            let labels = [];
-
-            // -------------------------
-            // TYPE LABELS
-            // -------------------------
-
-            if (
-              title.includes("fix") ||
-              lowerBody.includes("bug") ||
-              lowerBody.includes("error")
-            ) {
-              labels.push("bug");
-            }
-
-            if (
-              title.includes("feat") ||
-              title.includes("feature") ||
-              lowerBody.includes("enhancement")
-            ) {
-              labels.push("enhancement");
-            }
-
-            if (
-              lowerBody.includes("docs") ||
-              lowerBody.includes("documentation") ||
-              title.includes("readme")
-            ) {
-              labels.push("documentation");
-            }
-
-            if (
-              lowerBody.includes("refactor") ||
-              title.includes("cleanup")
-            ) {
-              labels.push("refactor");
-            }
-
-            if (
-              lowerBody.includes("test") ||
-              title.includes("test")
-            ) {
-              labels.push("test");
-            }
-
-            if (
-              lowerBody.includes("security") ||
-              lowerBody.includes("vulnerability")
-            ) {
-              labels.push("security");
-            }
-
-            if (
-              lowerBody.includes("dependency") ||
-              lowerBody.includes("package") ||
-              title.includes("deps")
-            ) {
-              labels.push("dependencies");
-            }
-
-            // -------------------------
-            // AREA LABELS
-            // -------------------------
-
-            if (
-              lowerBody.includes("frontend") ||
-              lowerBody.includes("ui") ||
-              lowerBody.includes("css") ||
-              lowerBody.includes("tailwind") ||
-              lowerBody.includes("design")
-            ) {
-              labels.push("frontend");
-              labels.push("ui/ux");
-            }
-
-            if (
-              lowerBody.includes("backend") ||
-              lowerBody.includes("api") ||
-              lowerBody.includes("server")
-            ) {
-              labels.push("backend");
-            }
-
-            if (
-              lowerBody.includes("database") ||
-              lowerBody.includes("schema") ||
-              lowerBody.includes("sql")
-            ) {
-              labels.push("database");
-            }
-
-            if (lowerBody.includes("firebase")) {
-              labels.push("firebase");
-            }
-
-            if (lowerBody.includes("supabase")) {
-              labels.push("supabase");
-            }
-
-            if (
-              lowerBody.includes("ai") ||
-              lowerBody.includes("openai") ||
-              lowerBody.includes("prompt")
-            ) {
-              labels.push("ai");
-            }
-
-            if (
-              lowerBody.includes("workflow") ||
-              lowerBody.includes("github action") ||
-              lowerBody.includes("ci")
-            ) {
-              labels.push("workflow");
-            }
-
-            if (
-              lowerBody.includes("resource") ||
-              lowerBody.includes(".md")
-            ) {
-              labels.push("resources");
-            }
-
-            // -------------------------
-            // PRIORITY LABELS
-            // -------------------------
-
-            if (
-              lowerBody.includes("urgent") ||
-              lowerBody.includes("critical")
-            ) {
-              labels.push("priority: critical");
-            } else if (
-              lowerBody.includes("important")
-            ) {
-              labels.push("priority: high");
-            } else {
-              labels.push("priority: medium");
-            }
-
-            // -------------------------
-            // STATUS LABELS
-            // -------------------------
-
-            labels.push("needs review");
-
-            // Remove duplicate labels
-            labels = [...new Set(labels)];
-
-            // =====================================================
-            // ❌ INVALID ISSUE → CLOSE PR
-            // =====================================================
-
-            if (!issueExists || !issueOpen) {
-
-              labels.push("invalid");
-
-              await github.rest.issues.addLabels({
-                owner,
-                repo,
-                issue_number: prNumber,
-                labels
-              });
-
-              let reason = !issueExists
-                ? "does not reference a valid issue"
-                : "references a closed issue";
+            if (!validIssue) {
 
               await github.rest.issues.createComment({
                 owner,
                 repo,
                 issue_number: prNumber,
                 body:
-                  `❌ This PR has been automatically closed because it ${reason}.\n\n` +
-                  `### Required Format\n` +
-                  `Please link an OPEN issue using:\n\n` +
-                  `\`Closes #issue_number\`\n\n` +
-                  `After fixing the PR description, you may reopen the PR.`
+                  "❌ This PR has been automatically closed.\n\n" +
+                  "Reason:\n" +
+                  "- No valid OPEN issue linked\n\n" +
+                  "Please link an open issue using:\n\n" +
+                  "`Closes #issue_number`\n\n" +
+                  "You can reopen the PR after updating the description."
               });
 
               await github.rest.pulls.update({
@@ -257,20 +93,121 @@ jobs:
             }
 
             // =====================================================
-            // ✅ VALID PR
+            // 🏷️ SMART LABELING
             // =====================================================
 
-            labels.push("valid");
+            let labels = [];
 
-            await github.rest.issues.addLabels({
-              owner,
-              repo,
-              issue_number: prNumber,
-              labels
-            });
+            // 🐛 BUG
+            if (
+              title.includes("fix") ||
+              lowerBody.includes("bug") ||
+              lowerBody.includes("error")
+            ) {
+              labels.push("bug");
+            }
+
+            // ✨ ENHANCEMENT
+            if (
+              title.includes("feat") ||
+              title.includes("feature") ||
+              lowerBody.includes("enhancement")
+            ) {
+              labels.push("enhancement");
+            }
+
+            // 📚 DOCUMENTATION
+            if (
+              lowerBody.includes("documentation") ||
+              lowerBody.includes("docs") ||
+              title.includes("readme")
+            ) {
+              labels.push("documentation");
+            }
+
+            // ♻️ REFACTOR
+            if (
+              lowerBody.includes("refactor") ||
+              title.includes("cleanup")
+            ) {
+              labels.push("refactor");
+            }
+
+            // 🔐 SECURITY
+            if (
+              lowerBody.includes("security") ||
+              lowerBody.includes("vulnerability")
+            ) {
+              labels.push("security");
+            }
+
+            // 🎨 FRONTEND
+            if (
+              lowerBody.includes("frontend") ||
+              lowerBody.includes("ui") ||
+              lowerBody.includes("react") ||
+              lowerBody.includes("tailwind") ||
+              lowerBody.includes("css")
+            ) {
+              labels.push("frontend");
+            }
+
+            // ⚙️ BACKEND
+            if (
+              lowerBody.includes("backend") ||
+              lowerBody.includes("api") ||
+              lowerBody.includes("server")
+            ) {
+              labels.push("backend");
+            }
+
+            // 🗄️ DATABASE
+            if (
+              lowerBody.includes("database") ||
+              lowerBody.includes("sql") ||
+              lowerBody.includes("schema") ||
+              lowerBody.includes("firebase") ||
+              lowerBody.includes("supabase")
+            ) {
+              labels.push("database");
+            }
+
+            // 🤖 AI
+            if (
+              lowerBody.includes("ai") ||
+              lowerBody.includes("openai") ||
+              lowerBody.includes("prompt")
+            ) {
+              labels.push("ai");
+            }
+
+            // ⚙️ WORKFLOW
+            if (
+              lowerBody.includes("workflow") ||
+              lowerBody.includes("github action") ||
+              lowerBody.includes("ci")
+            ) {
+              labels.push("workflow");
+            }
+
+            // Remove duplicates
+            labels = [...new Set(labels)];
 
             // =====================================================
-            // 👤 AUTO ASSIGN
+            // 🏷️ APPLY LABELS
+            // =====================================================
+
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: prNumber,
+                labels
+              });
+            }
+
+            // =====================================================
+            // 👤 AUTO ASSIGN OWNER
             // =====================================================
 
             await github.rest.issues.addAssignees({
@@ -289,8 +226,8 @@ jobs:
               repo,
               issue_number: prNumber,
               body:
-                `✅ PR validation passed.\n\n` +
-                `- Linked issue verified\n` +
-                `- Labels applied\n` +
-                `- Ready for maintainer review 🚀`
+                "✅ PR validation passed.\n\n" +
+                "- Open issue verified\n" +
+                "- Relevant labels applied\n" +
+                "- Ready for maintainer review 🚀"
             });
