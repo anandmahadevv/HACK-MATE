@@ -332,7 +332,7 @@ export function HeroWave({
                                         maxLength={12}
                                         placeholder="HM-XXXXXX"
                                         disabled={isSubmitting}
-                                        className="w-full h-14 sm:h-20 pl-16 pr-4 bg-transparent border-none text-indigo-900 placeholder:text-indigo-200 focus:ring-0 text-2xl font-black tracking-widest uppercase disabled:opacity-50"
+                                        className="w-full h-14 sm:h-20 pl-16 pr-4 bg-transparent border-none text-indigo-900 placeholder:text-indigo-200 focus:ring-0 outline-none text-2xl font-black tracking-widest uppercase disabled:opacity-50"
                                         autoFocus
                                     />
                                 </div>
@@ -369,7 +369,7 @@ export function HeroWave({
                                         onChange={(e) => setPrompt(e.target.value)}
                                         maxLength={500}
                                         placeholder="Paste your problem statement..."
-                                        className="w-full h-14 sm:h-16 pl-14 pr-4 bg-transparent border-none text-gray-900 placeholder:text-gray-400 focus:ring-0 text-base sm:text-lg font-medium"
+                                        className="w-full h-14 sm:h-16 pl-14 pr-4 bg-transparent border-none text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none text-base sm:text-lg font-medium"
                                         autoFocus
                                     />
                                 </div>
