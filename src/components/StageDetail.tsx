@@ -427,6 +427,7 @@ export function StageDetail({ stageId, onBack, onOpenResources, project }: Stage
                             <textarea
                                 value={displayPrompt}
                                 onChange={handlePromptChange}
+                                maxLength={3000}
                                 className="w-full h-64 sm:h-80 p-5 sm:p-8 rounded-2xl sm:rounded-[2rem] bg-gray-900 text-gray-100 font-mono text-xs sm:text-sm leading-relaxed border-4 border-transparent focus:border-gray-700/30 selection:bg-gray-700 selection:text-white transition-all outline-none"
                             />
                             {isEdited && (
@@ -492,6 +493,7 @@ export function StageDetail({ stageId, onBack, onOpenResources, project }: Stage
                                 type="text"
                                 value={newComment}
                                 onChange={(e) => setNewComment(e.target.value)}
+                                maxLength={200}
                                 placeholder="Add a note for the team..."
                                 className={`w-full border rounded-xl py-3 pl-4 pr-12 text-sm font-medium focus:outline-none focus:ring-4 transition-all ${isDark ? 'bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 focus:ring-gray-600/30 focus:border-gray-500' : 'bg-white border-gray-200 focus:ring-gray-900/5 focus:border-gray-900'}`}
                             />

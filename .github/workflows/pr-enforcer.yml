@@ -1,0 +1,259 @@
+name: PR Enforcer
+
+on:
+  pull_request_target:
+    types: [opened, edited, reopened]
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+
+jobs:
+  enforce:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate and Manage PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+
+            const body = pr.body || "";
+            const title = pr.title || "";
+
+            const lowerBody = body.toLowerCase();
+            const lowerTitle = title.toLowerCase();
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const prNumber = pr.number;
+
+            // =====================================================
+            // 🔍 ISSUE VALIDATION
+            // =====================================================
+
+            // Required format:
+            // Closes #12
+            // Fixes #12
+            // Resolves #12
+
+            const match = body.match(
+              /(close[sd]?|fix(e[sd])?|resolve[sd]?)\s+#(\d+)/i
+            );
+
+            let issueNumber = match ? parseInt(match[3]) : null;
+
+            let validIssue = false;
+
+            if (issueNumber) {
+              try {
+
+                const issue = await github.rest.issues.get({
+                  owner,
+                  repo,
+                  issue_number: issueNumber
+                });
+
+                // Must be:
+                // 1. real issue
+                // 2. not another PR
+                // 3. open
+
+                if (
+                  !issue.data.pull_request &&
+                  issue.data.state === "open"
+                ) {
+                  validIssue = true;
+                }
+
+              } catch (err) {
+                validIssue = false;
+              }
+            }
+
+            // =====================================================
+            // ❌ INVALID PR
+            // =====================================================
+
+            if (!validIssue) {
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body:
+                  "❌ This PR was automatically closed.\n\n" +
+                  "Reason:\n" +
+                  "- No valid OPEN issue linked.\n\n" +
+                  "Please link an open issue using:\n\n" +
+                  "`Closes #issue_number`\n\n" +
+                  "Example:\n" +
+                  "`Closes #12`\n\n" +
+                  "After updating the PR description, you may reopen this PR."
+              });
+
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number: prNumber,
+                state: "closed"
+              });
+
+              return;
+            }
+
+            // =====================================================
+            // 🏷️ STRICT LABELING
+            // =====================================================
+
+            let labels = [];
+
+            // -----------------------------------------------------
+            // TYPE LABELS
+            // -----------------------------------------------------
+
+            // 🐛 BUG
+            if (
+              /^fix(\(|:)/i.test(title) ||
+              lowerTitle.includes("bugfix") ||
+              lowerBody.includes("fixes bug") ||
+              lowerBody.includes("bug fix")
+            ) {
+              labels.push("bug");
+            }
+
+            // ✨ ENHANCEMENT
+            if (
+              /^feat(\(|:)/i.test(title) ||
+              lowerBody.includes("new feature") ||
+              lowerBody.includes("adds feature")
+            ) {
+              labels.push("enhancement");
+            }
+
+            // 📚 DOCUMENTATION
+            if (
+              /^docs(\(|:)/i.test(title) ||
+              lowerBody.includes("documentation update") ||
+              lowerBody.includes("readme update")
+            ) {
+              labels.push("documentation");
+            }
+
+            // ♻️ REFACTOR
+            if (
+              /^refactor(\(|:)/i.test(title) ||
+              lowerBody.includes("code cleanup") ||
+              lowerBody.includes("major cleanup") ||
+              lowerBody.includes("refactor")
+            ) {
+              labels.push("refactor");
+            }
+
+            // 🔐 SECURITY
+            if (
+              /^security(\(|:)/i.test(title) ||
+              lowerBody.includes("security fix") ||
+              lowerBody.includes("vulnerability patch")
+            ) {
+              labels.push("security");
+            }
+
+            // -----------------------------------------------------
+            // AREA LABELS
+            // -----------------------------------------------------
+
+            // 🎨 FRONTEND
+            if (
+              lowerBody.includes("frontend component") ||
+              lowerBody.includes("ui change") ||
+              lowerBody.includes("tailwind styling") ||
+              lowerBody.includes("react component") ||
+              lowerBody.includes("css update")
+            ) {
+              labels.push("frontend");
+            }
+
+            // ⚙️ BACKEND
+            if (
+              lowerBody.includes("backend api") ||
+              lowerBody.includes("server route") ||
+              lowerBody.includes("api endpoint")
+            ) {
+              labels.push("backend");
+            }
+
+            // 🗄️ DATABASE
+            if (
+              lowerBody.includes("database schema") ||
+              lowerBody.includes("sql migration") ||
+              lowerBody.includes("supabase table") ||
+              lowerBody.includes("firebase config")
+            ) {
+              labels.push("database");
+            }
+
+            // 🤖 AI
+            if (
+              lowerBody.includes("openai integration") ||
+              lowerBody.includes("ai feature") ||
+              lowerBody.includes("prompt engineering") ||
+              lowerBody.includes("llm response")
+            ) {
+              labels.push("ai");
+            }
+
+            // ⚙️ WORKFLOW
+            if (
+              lowerBody.includes("github workflow") ||
+              lowerBody.includes("github action") ||
+              lowerBody.includes("ci pipeline")
+            ) {
+              labels.push("workflow");
+            }
+
+            // Remove duplicates
+            labels = [...new Set(labels)];
+
+            // =====================================================
+            // 🏷️ APPLY LABELS
+            // =====================================================
+
+            if (labels.length > 0) {
+
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: prNumber,
+                labels
+              });
+
+            }
+
+            // =====================================================
+            // 👤 AUTO ASSIGN REPO OWNER
+            // =====================================================
+
+            await github.rest.issues.addAssignees({
+              owner,
+              repo,
+              issue_number: prNumber,
+              assignees: [owner]
+            });
+
+            // =====================================================
+            // 💬 SUCCESS COMMENT
+            // =====================================================
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: prNumber,
+              body:
+                "✅ PR validation passed.\n\n" +
+                "- Open issue verified\n" +
+                "- Relevant labels applied\n" +
+                "- Ready for maintainer review 🚀"
+            });
