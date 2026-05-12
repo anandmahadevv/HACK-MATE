@@ -53,7 +53,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                     <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                         Let's build your strategy.
                     </h2>
-                    <p className={`text-sm sm:text-lg ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-sm sm:text-lg ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                         Tell us about the hackathon and your constraints.
                     </p>
                 </div>
@@ -67,7 +67,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                             onClick={() => setIsTeam(false)}
                             className={`py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${!isTeam
                                 ? `shadow-md transform scale-[1.02] ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`
-                                : `${isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'}`}`}
+                                : `${isDark ? 'text-gray-300 hover:text-gray-100' : 'text-gray-400 hover:text-gray-600'}`}`}
                         >
                             Solo Project
                         </button>
@@ -76,7 +76,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                             onClick={() => setIsTeam(true)}
                             className={`py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${isTeam
                                 ? `shadow-md transform scale-[1.02] ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`
-                                : `${isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'}`}`}
+                                : `${isDark ? 'text-gray-300 hover:text-gray-100' : 'text-gray-400 hover:text-gray-600'}`}`}
                         >
                             <Users className="w-4 h-4" /> Team Project
                         </button>
@@ -164,7 +164,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                     {/* Time Left */}
                     <div className="space-y-4">
                         <label className={`block text-sm font-bold flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                            <Clock className="w-4 h-4 text-gray-500" /> Hackathon Duration
+                            <Clock className="w-4 h-4 text-gray-500 dark:text-gray-400" /> Hackathon Duration
                         </label>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                             {['24', '48', '72'].map((time) => (
@@ -208,7 +208,7 @@ export function ProjectSetup({ initialProblem, onComplete, onBack }: ProjectSetu
                         <button
                             type="button"
                             onClick={onBack}
-                            className={`w-full sm:flex-1 py-4 px-6 rounded-2xl text-base font-bold transition-all ${isDark ? 'text-gray-500 hover:text-white hover:bg-gray-800' : 'text-gray-400 hover:text-gray-900 hover:bg-gray-100'}`}
+                            className={`w-full sm:flex-1 py-4 px-6 rounded-2xl text-base font-bold transition-all ${isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-400 hover:text-gray-900 hover:bg-gray-100'}`}
                         >
                             Back
                         </button>

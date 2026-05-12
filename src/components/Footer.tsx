@@ -32,7 +32,7 @@ export function Footer({
                         </div>
                         <span>Hackathon Copilot</span>
                     </div>
-                    <p className={`text-sm leading-relaxed mb-8 font-medium ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                    <p className={`text-sm leading-relaxed mb-8 font-medium ${isDark ? 'text-gray-300' : 'text-gray-400'}`}>
                         Accelerating <span className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>200+ builders</span> across{' '}
                         <span className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>8 countries</span> in the last month alone.
                     </p>
@@ -45,7 +45,7 @@ export function Footer({
 
                 <div>
                     <h3 className={`font-bold mb-6 uppercase text-xs tracking-widest ${isDark ? 'text-gray-300' : 'text-gray-900'}`}>Platform</h3>
-                    <ul className="space-y-4 text-sm font-medium text-gray-500">
+                    <ul className={`space-y-4 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                         <FooterLink label="How It Works" onClick={onOpenHowItWorks} isDark={isDark} />
                         <FooterLink label="Features" onClick={onOpenFeatures} isDark={isDark} />
                         <FooterLink label="FAQ" onClick={onOpenFAQ} isDark={isDark} />
@@ -54,7 +54,7 @@ export function Footer({
 
                 <div>
                     <h3 className={`font-bold mb-6 uppercase text-xs tracking-widest ${isDark ? 'text-gray-300' : 'text-gray-900'}`}>Resources</h3>
-                    <ul className="space-y-4 text-sm font-medium text-gray-500">
+                    <ul className={`space-y-4 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                         <FooterLink label="Resources Hub" onClick={onOpenResources} isDark={isDark} />
                         <FooterLink label="Strategy Guide" onClick={onOpenGuide} isDark={isDark} />
                         <FooterLink label="Case Studies" onClick={onOpenCaseStudies} isDark={isDark} />
@@ -63,7 +63,7 @@ export function Footer({
 
                 <div>
                     <h3 className={`font-bold mb-6 uppercase text-xs tracking-widest ${isDark ? 'text-gray-300' : 'text-gray-900'}`}>Connect</h3>
-                    <ul className="space-y-4 text-sm font-medium text-gray-500">
+                    <ul className={`space-y-4 text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                         <FooterLink label="GitHub" href="https://github.com/anandmahadev" isExternal isDark={isDark} />
                         <FooterLink label="LinkedIn" href="https://linkedin.com" isExternal isDark={isDark} />
                         <FooterLink label="Email Us" href="mailto:hello@hackcopilot.ai" isDark={isDark} />

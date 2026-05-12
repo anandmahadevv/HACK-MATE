@@ -60,7 +60,7 @@ export function FAQ({ onBack }: { onBack: () => void }) {
             <main className="max-w-3xl mx-auto px-6 py-20">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-extrabold mb-4">Frequently Asked Questions</h1>
-                    <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-lg ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                         Everything you need to know about the Hackathon Copilot.
                     </p>
                 </div>
@@ -73,7 +73,7 @@ export function FAQ({ onBack }: { onBack: () => void }) {
 
                 <div className={`mt-20 p-8 rounded-3xl border text-center ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'}`}>
                     <h3 className="text-xl font-bold mb-2">Still have questions?</h3>
-                    <p className={`mb-6 font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`mb-6 font-medium ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                         We're here to help you win. Reach out to us on Discord or GitHub.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">

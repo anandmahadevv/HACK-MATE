@@ -14,7 +14,7 @@ export function Features({ onBack }: { onBack: () => void }) {
         {
             title: "Best-in-Class Tools",
             desc: "Exact tool recommendations based on your tech stack. Filter by setup time, cost, and expertise level.",
-            icon: <Toolbox className="w-8 h-8 text-gray-400" />,
+            icon: <Toolbox className={`w-8 h-8 ${isDark ? 'text-gray-300' : 'text-gray-400'}`} />,
             tag: "Curated"
         },
         {
@@ -84,7 +84,7 @@ export function Features({ onBack }: { onBack: () => void }) {
                             Next-Gen Developer.
                         </span>
                     </h1>
-                    <p className={`text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                         Everything you need to go from a blank screen to a world-class project. No fluff, just the essentials for winning.
                     </p>
                 </div>
@@ -102,12 +102,12 @@ export function Features({ onBack }: { onBack: () => void }) {
                                 {feature.icon}
                             </div>
                             <div className="mb-2">
-                                <span className={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${isDark ? 'bg-gray-700 text-gray-400' : 'bg-gray-100 text-gray-400'}`}>
+                                <span className={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${isDark ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-400'}`}>
                                     {feature.tag}
                                 </span>
                             </div>
                             <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>{feature.title}</h3>
-                            <p className={`text-sm leading-relaxed mb-6 flex-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                            <p className={`text-sm leading-relaxed mb-6 flex-1 ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                                 {feature.desc}
                             </p>
                             <button className={`text-sm font-bold flex items-center gap-1 group/btn ${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-900'}`}>
@@ -123,7 +123,7 @@ export function Features({ onBack }: { onBack: () => void }) {
                     <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-3xl font-bold mb-6">See it in action.</h2>
-                            <p className={`text-lg mb-8 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                            <p className={`text-lg mb-8 ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                                 Watch how a solo developer built a fully functional ML project in just 30 minutes using Hackathon Copilot.
                             </p>
                             <div className="flex gap-4">

@@ -113,37 +113,37 @@ export function HeroWave({
                     </div>
 
                     <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                        <button onClick={onOpenHowItWorks} className="hover:text-gray-900 transition-colors relative group">
+                        <button onClick={onOpenHowItWorks} className="hover:text-gray-900 dark:hover:text-white transition-colors relative group">
                             How it Works
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 transition-all group-hover:w-full" />
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white transition-all group-hover:w-full" />
                         </button>
-                        <button onClick={onOpenFeatures} className="hover:text-gray-900 transition-colors relative group">
+                        <button onClick={onOpenFeatures} className="hover:text-gray-900 dark:hover:text-white transition-colors relative group">
                             Features
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 transition-all group-hover:w-full" />
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white transition-all group-hover:w-full" />
                         </button>
-                        <button onClick={onOpenResources} className="hover:text-gray-900 transition-colors relative group">
+                        <button onClick={onOpenResources} className="hover:text-gray-900 dark:hover:text-white transition-colors relative group">
                             Resources
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 transition-all group-hover:w-full" />
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white transition-all group-hover:w-full" />
                         </button>
-                        <button onClick={onOpenCaseStudies} className="hover:text-gray-900 transition-colors relative group">
+                        <button onClick={onOpenCaseStudies} className="hover:text-gray-900 dark:hover:text-white transition-colors relative group">
                             Success Stories
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 transition-all group-hover:w-full" />
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white transition-all group-hover:w-full" />
                         </button>
 
                         <div className="h-6 w-px bg-gray-200 mx-1" />
 
                         {user ? (
                             <div className="flex items-center gap-4 pl-2">
-                                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200 shadow-sm">
+                                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
                                     {user.photoURL && <img src={user.photoURL} alt={user.displayName || ""} className="w-6 h-6 rounded-full" />}
-                                    <span className="text-gray-900 font-bold">{user.displayName?.split(' ')[0]}</span>
+                                    <span className="text-gray-900 dark:text-white font-bold">{user.displayName?.split(' ')[0]}</span>
                                 </div>
                                 <button onClick={onLogout} className="text-xs text-gray-400 hover:text-red-500 transition-colors uppercase tracking-wider font-bold">
                                     Sign Out
                                 </button>
                             </div>
                         ) : (
-                            <button onClick={onLogin} className="px-6 py-2 rounded-full bg-gray-900 hover:bg-black text-white font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-gray-900/20">
+                            <button onClick={onLogin} className="px-6 py-2 rounded-full bg-gray-900 hover:bg-black text-white font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-gray-900/20 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100">
                                 Sign In
                             </button>
                         )}
@@ -152,7 +152,7 @@ export function HeroWave({
                                 setIsJoining(true);
                                 window.scrollTo({ top: 300, behavior: 'smooth' });
                             }}
-                            className="bg-indigo-50 text-indigo-600 px-5 py-2 rounded-full font-bold text-xs hover:bg-indigo-100 transition-all border border-indigo-100"
+                            className="bg-indigo-50 text-indigo-600 px-5 py-2 rounded-full font-bold text-xs hover:bg-indigo-100 transition-all border border-indigo-100 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-900/50 dark:hover:bg-indigo-900/60"
                         >
                             Join Team
                         </button>
@@ -180,7 +180,7 @@ export function HeroWave({
                                         <span className="text-xs font-black text-indigo-400">{user.displayName?.[0]}</span>
                                     )}
                                 </div>
-                                <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-gray-900 bg-gray-50 rounded-xl border border-gray-100">
+                                <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-gray-900 bg-gray-50 rounded-xl border border-gray-100 dark:text-gray-100 dark:bg-gray-800 dark:border-gray-700">
                                     <div className="w-5 h-4 flex flex-col justify-between">
                                         <span className={`h-0.5 w-full bg-current rounded-full transition-all ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
                                         <span className={`h-0.5 w-full bg-current rounded-full transition-all ${mobileMenuOpen ? 'opacity-0' : ''}`} />
@@ -193,7 +193,7 @@ export function HeroWave({
                                 <button onClick={onLogin} className="px-5 py-2 rounded-full bg-gray-900 text-white text-xs font-black uppercase tracking-wider shadow-lg active:scale-95 transition-all">
                                     Sign In
                                 </button>
-                                <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-gray-900 bg-gray-50 rounded-xl border border-gray-100">
+                                <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-gray-900 bg-gray-50 rounded-xl border border-gray-100 dark:text-gray-100 dark:bg-gray-800 dark:border-gray-700">
                                     <div className="w-5 h-4 flex flex-col justify-between">
                                         <span className={`h-0.5 w-full bg-current rounded-full transition-all ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
                                         <span className={`h-0.5 w-full bg-current rounded-full transition-all ${mobileMenuOpen ? 'opacity-0' : ''}`} />
@@ -206,7 +206,7 @@ export function HeroWave({
                 </div>
 
                 {/* Mobile Navigation Menu */}
-                <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-2xl border-b border-gray-100 transition-all duration-300 overflow-hidden ${mobileMenuOpen ? 'max-h-screen opacity-100 shadow-2xl' : 'max-h-0 opacity-0'}`}>
+                <div className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-2xl border-b border-gray-100 transition-all duration-300 overflow-hidden dark:bg-gray-900/95 dark:border-gray-800 ${mobileMenuOpen ? 'max-h-screen opacity-100 shadow-2xl' : 'max-h-0 opacity-0'}`}>
                     <div className="p-6 space-y-2">
                         {[
                             { label: 'How it Works', icon: <Zap className="w-4 h-4" />, action: onOpenHowItWorks },
@@ -222,25 +222,25 @@ export function HeroWave({
                                     item.action?.();
                                     setMobileMenuOpen(false);
                                 }}
-                                className="w-full flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 transition-colors group"
+                                className="w-full flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-indigo-600 group-hover:bg-indigo-50 transition-all">
+                                    <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-indigo-600 group-hover:bg-indigo-50 transition-all dark:bg-gray-800 dark:group-hover:bg-indigo-900/40 dark:group-hover:text-indigo-300">
                                         {item.icon}
                                     </div>
-                                    <span className="font-black text-gray-900">{item.label}</span>
+                                    <span className="font-black text-gray-900 dark:text-white">{item.label}</span>
                                 </div>
-                                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
+                                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all dark:text-gray-600 dark:group-hover:text-indigo-300" />
                             </button>
                         ))}
 
                         {user && (
-                            <div className="pt-6 mt-4 border-t border-gray-100">
+                            <div className="pt-6 mt-4 border-t border-gray-100 dark:border-gray-800">
                                 <button
                                     onClick={onLogout}
-                                    className="w-full flex items-center gap-4 p-4 rounded-2xl text-red-500 hover:bg-red-50 transition-colors font-black"
+                                    className="w-full flex items-center gap-4 p-4 rounded-2xl text-red-500 hover:bg-red-50 transition-colors font-black dark:text-red-400 dark:hover:bg-red-950/40"
                                 >
-                                    <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center dark:bg-red-950/40">
                                         <ArrowRight className="w-5 h-5 rotate-180" />
                                     </div>
                                     Sign Out
@@ -256,33 +256,33 @@ export function HeroWave({
 
                 {/* Status Indicator */}
                 <div className="mb-6 animate-in fade-in slide-in-from-bottom-3 duration-1000">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/40 dark:border-emerald-900/50">
                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider">Live: 42 builders currently planning</span>
+                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-300 uppercase tracking-wider">Live: 42 builders currently planning</span>
                     </div>
                 </div>
 
                 {/* Milestone Badge (Enhanced) */}
-                <div className="inline-flex items-center gap-4 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-xs font-semibold text-gray-600 mb-10 transition-all hover:border-gray-300 hover:shadow-xl group cursor-default">
+                <div className="inline-flex items-center gap-4 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-xs font-semibold text-gray-600 mb-10 transition-all hover:border-gray-300 hover:shadow-xl group cursor-default dark:bg-gray-800/80 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-600">
                     <div className="flex -space-x-2.5">
                         {[1, 2, 3, 4].map(i => (
-                            <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center overflow-hidden shadow-sm">
+                            <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center overflow-hidden shadow-sm dark:border-gray-900 dark:bg-gray-700">
                                 <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 42}`} alt="user" className="w-full h-full" />
                             </div>
                         ))}
                     </div>
                     <div className="flex items-center gap-4 h-4">
                         <div className="flex items-baseline gap-1">
-                            <span className="text-gray-900 font-black">200+</span>
-                            <span className="text-gray-400 text-[10px] uppercase font-bold tracking-tight">Builders</span>
+                            <span className="text-gray-900 dark:text-white font-black">200+</span>
+                            <span className="text-gray-400 dark:text-gray-500 text-[10px] uppercase font-bold tracking-tight">Builders</span>
                         </div>
-                        <div className="w-px h-full bg-gray-100" />
+                        <div className="w-px h-full bg-gray-100 dark:bg-gray-700" />
                         <div className="flex items-baseline gap-1">
-                            <span className="text-gray-900 font-black">8+</span>
-                            <span className="text-gray-400 text-[10px] uppercase font-bold tracking-tight">Countries</span>
+                            <span className="text-gray-900 dark:text-white font-black">8+</span>
+                            <span className="text-gray-400 dark:text-gray-500 text-[10px] uppercase font-bold tracking-tight">Countries</span>
                         </div>
-                        <div className="w-px h-full bg-gray-100" />
-                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-50 text-amber-600">
+                        <div className="w-px h-full bg-gray-100 dark:bg-gray-700" />
+                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-300">
                             <span className="font-black">1 Month</span>
                             <Sparkles className="w-3 h-3 fill-amber-500" />
                         </div>
@@ -306,8 +306,8 @@ export function HeroWave({
                     {isJoining ? (
                         <div className="relative z-30 animate-in fade-in zoom-in-95 duration-300">
                              <div className="mb-4 text-center">
-                                <h3 className="text-xl font-black text-gray-900">Join Your Team</h3>
-                                <p className="text-sm text-gray-500">Enter the unique Team ID shared by your teammate.</p>
+                                          <h3 className="text-xl font-black text-gray-900 dark:text-white">Join Your Team</h3>
+                                          <p className="text-sm text-gray-500 dark:text-gray-300">Enter the unique Team ID shared by your teammate.</p>
                              </div>
                              <form
                                 onSubmit={async (e) => {
@@ -320,8 +320,8 @@ export function HeroWave({
                                     } finally {
                                         setIsSubmitting(false);
                                     }
-                                }}
-                                className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-indigo-50 rounded-2xl sm:rounded-[2rem] shadow-2xl border-2 border-indigo-200 p-2 focus-within:ring-4 focus-within:ring-indigo-100 transition-all"
+                                }} 
+                                className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-indigo-50 rounded-2xl sm:rounded-[2rem] shadow-2xl border-2 border-indigo-200 p-2 focus-within:ring-4 focus-within:ring-indigo-100 transition-all dark:bg-indigo-950/40 dark:border-indigo-800/60 dark:focus-within:ring-indigo-900/40"
                             >
                                 <div className="flex-1 relative">
                                     <Code2 className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-indigo-400" />
@@ -332,7 +332,7 @@ export function HeroWave({
                                         maxLength={12}
                                         placeholder="HM-XXXXXX"
                                         disabled={isSubmitting}
-                                        className="w-full h-14 sm:h-20 pl-16 pr-4 bg-transparent border-none text-indigo-900 placeholder:text-indigo-200 focus:ring-0 outline-none text-2xl font-black tracking-widest uppercase disabled:opacity-50"
+                                        className="w-full h-14 sm:h-20 pl-16 pr-4 bg-transparent border-none text-indigo-900 placeholder:text-indigo-200 focus:ring-0 text-2xl font-black tracking-widest uppercase disabled:opacity-50 dark:text-indigo-100 dark:placeholder:text-indigo-400"
                                         autoFocus
                                     />
                                 </div>
@@ -353,14 +353,14 @@ export function HeroWave({
                             </form>
                             <button
                                 onClick={() => setIsJoining(false)}
-                                className="mt-6 text-xs font-black text-gray-400 hover:text-indigo-500 uppercase tracking-widest text-center block mx-auto py-2 px-4 rounded-xl hover:bg-gray-50 transition-all"
+                                className="mt-6 text-xs font-black text-gray-400 hover:text-indigo-500 uppercase tracking-widest text-center block mx-auto py-2 px-4 rounded-xl hover:bg-gray-50 transition-all dark:text-gray-500 dark:hover:text-indigo-300 dark:hover:bg-gray-900"
                             >
                                 ← Nevermind, I'll start a new project
                             </button>
                         </div>
                     ) : (
                         <>
-                            <form onSubmit={handleSubmit} className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-white rounded-2xl sm:rounded-[2rem] shadow-xl border border-gray-100 p-2 focus-within:ring-2 focus-within:ring-gray-100 transition-all">
+                            <form onSubmit={handleSubmit} className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-white rounded-2xl sm:rounded-[2rem] shadow-xl border border-gray-100 p-2 focus-within:ring-2 focus-within:ring-gray-100 transition-all dark:bg-gray-900/80 dark:border-gray-700 dark:focus-within:ring-gray-700">
                                 <div className="flex-1 relative">
                                     <Box className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                                     <input
@@ -369,26 +369,26 @@ export function HeroWave({
                                         onChange={(e) => setPrompt(e.target.value)}
                                         maxLength={500}
                                         placeholder="Paste your problem statement..."
-                                        className="w-full h-14 sm:h-16 pl-14 pr-4 bg-transparent border-none text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none text-base sm:text-lg font-medium"
+                                        className="w-full h-14 sm:h-16 pl-14 pr-4 bg-transparent border-none text-gray-900 placeholder:text-gray-400 focus:ring-0 text-base sm:text-lg font-medium dark:text-gray-100 dark:placeholder:text-gray-500"
                                         autoFocus
                                     />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="bg-gray-900 hover:bg-black text-white h-12 sm:h-auto py-4 px-10 rounded-xl sm:rounded-full font-bold text-base transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-gray-900/20"
+                                    className="bg-gray-900 hover:bg-black text-white h-12 sm:h-auto py-4 px-10 rounded-xl sm:rounded-full font-bold text-base transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-gray-900/20 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
                                 >
                                     Start Project <ArrowRight className="w-4 h-4" />
                                 </button>
                             </form>
                             <div className="mt-8 flex flex-col items-center gap-4 animate-in fade-in slide-in-from-top-2 duration-700 delay-300">
                                 <div className="flex items-center gap-4">
-                                    <div className="h-px w-8 bg-gray-100" />
-                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em]">Already have a team?</span>
-                                    <div className="h-px w-8 bg-gray-100" />
+                                    <div className="h-px w-8 bg-gray-100 dark:bg-gray-800" />
+                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em] dark:text-gray-500">Already have a team?</span>
+                                    <div className="h-px w-8 bg-gray-100 dark:bg-gray-800" />
                                 </div>
                                 <button
                                     onClick={() => setIsJoining(true)}
-                                    className="px-8 py-3 rounded-2xl bg-indigo-50 text-indigo-600 font-bold text-sm hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-105 shadow-sm border border-indigo-100"
+                                    className="px-8 py-3 rounded-2xl bg-indigo-50 text-indigo-600 font-bold text-sm hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-105 shadow-sm border border-indigo-100 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-900/50 dark:hover:bg-indigo-900/60"
                                 >
                                     Login with Team ID
                                 </button>
@@ -400,7 +400,7 @@ export function HeroWave({
                     <div className="mt-10 flex flex-wrap justify-center gap-2 opacity-0 animate-in fade-in duration-700 delay-500 fill-mode-forwards">
                         <button
                             onClick={() => setSelectedCategory(null)}
-                            className={`px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all ${!selectedCategory ? 'bg-gray-900 text-white shadow-lg' : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600'}`}
+                            className={`px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all ${!selectedCategory ? 'bg-gray-900 text-white shadow-lg dark:bg-white dark:text-gray-900' : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200'}`}
                         >
                             All Categories
                         </button>
@@ -408,7 +408,7 @@ export function HeroWave({
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
-                                className={`px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all ${selectedCategory === cat ? 'bg-gray-700 text-white shadow-lg' : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600'}`}
+                                className={`px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all ${selectedCategory === cat ? 'bg-gray-700 text-white shadow-lg dark:bg-gray-100 dark:text-gray-900' : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200'}`}
                             >
                                 {cat}
                             </button>
@@ -421,7 +421,7 @@ export function HeroWave({
                             <button
                                 key={i}
                                 onClick={() => setPrompt(s.label)}
-                                className="px-4 py-2 rounded-xl bg-white border border-gray-100 text-xs font-bold text-gray-500 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm"
+                                className="px-4 py-2 rounded-xl bg-white border border-gray-100 text-xs font-bold text-gray-500 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
                             >
                                 {s.label}
                             </button>
@@ -429,7 +429,7 @@ export function HeroWave({
                         {filteredSuggestions.length > 4 && (
                             <button
                                 onClick={() => setShowAllSuggestions(!showAllSuggestions)}
-                                className="px-4 py-2 rounded-xl bg-gray-50 border border-gray-100 text-[10px] font-black uppercase text-gray-400 hover:bg-gray-100 hover:text-gray-900 transition-all"
+                                className="px-4 py-2 rounded-xl bg-gray-50 border border-gray-100 text-[10px] font-black uppercase text-gray-400 hover:bg-gray-100 hover:text-gray-900 transition-all dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
                             >
                                 {showAllSuggestions ? "Less" : `+${filteredSuggestions.length - 4} Ideas`}
                             </button>
@@ -440,12 +440,12 @@ export function HeroWave({
                 {/* Feature Grid */}
                 <div className="w-full max-w-6xl mx-auto mt-32 grid grid-cols-1 sm:grid-cols-3 gap-8 px-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-300">
                     <FeatureCard
-                        icon={<Zap className="w-6 h-6 text-gray-900" />}
+                        icon={<Zap className="w-6 h-6 text-gray-900 dark:text-white" />}
                         title="Instant Strategy"
                         desc="Get a tailored roadmap from Ideation to Pitch Deck in seconds."
                     />
                     <FeatureCard
-                        icon={<LayoutTemplate className="w-6 h-6 text-gray-900" />}
+                        icon={<LayoutTemplate className="w-6 h-6 text-gray-900 dark:text-white" />}
                         title="Best-in-Class Tools"
                         desc="Curated recommendations for the exact tech stack you need."
                     />
@@ -458,10 +458,10 @@ export function HeroWave({
 
                 {/* Setup Guide Section */}
                 <div className="w-full max-w-4xl mx-auto mt-32 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-400">
-                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.03)] overflow-hidden">
-                        <div className="p-10 md:p-14 border-b border-gray-50">
-                            <h2 className="text-3xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500">Fast-Track Setup</h2>
-                            <p className="text-gray-400 text-lg max-w-xl mx-auto">
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.03)] overflow-hidden dark:bg-gray-900 dark:border-gray-800">
+                        <div className="p-10 md:p-14 border-b border-gray-50 dark:border-gray-800">
+                            <h2 className="text-3xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500 dark:from-white dark:to-gray-300">Fast-Track Setup</h2>
+                            <p className="text-gray-400 dark:text-gray-300 text-lg max-w-xl mx-auto">
                                 Initialize the Hackathon Copilot engine in three commands and start building immediately.
                             </p>
                         </div>
@@ -501,18 +501,18 @@ export function HeroWave({
                 {/* Recent Projects (Minimal Floating) */}
                 {recentProjects.length > 0 && (
                     <div className="relative sm:absolute sm:top-32 sm:right-8 z-20 mt-12 sm:mt-0 animate-in fade-in slide-in-from-right-8 duration-1000 delay-500">
-                        <div className="bg-white/90 backdrop-blur-2xl border border-white/20 shadow-xl rounded-[2rem] p-6 w-full max-w-xs mx-auto sm:mx-0">
-                            <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-4 px-1">Resume Building</h3>
+                        <div className="bg-white/90 backdrop-blur-2xl border border-white/20 shadow-xl rounded-[2rem] p-6 w-full max-w-xs mx-auto sm:mx-0 dark:bg-gray-900/90 dark:border-gray-800">
+                            <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-4 px-1 dark:text-gray-500">Resume Building</h3>
                             <div className="space-y-3">
                                 {recentProjects.map((p: Project) => (
                                     <div key={p.id} className="group/card relative">
                                         <button
                                             onClick={() => onResumeProject?.(p)}
-                                            className="w-full text-left px-5 py-4 rounded-2xl hover:bg-gray-50 transition-all flex items-center justify-between group bg-gray-50/30 border border-transparent hover:border-gray-100"
+                                            className="w-full text-left px-5 py-4 rounded-2xl hover:bg-gray-50 transition-all flex items-center justify-between group bg-gray-50/30 border border-transparent hover:border-gray-100 dark:bg-gray-900/30 dark:hover:bg-gray-800 dark:hover:border-gray-700"
                                         >
-                                            <span className="truncate max-w-[120px] font-black text-gray-800 text-sm">{p.name || "New Project"}</span>
-                                            <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white shadow-sm border border-gray-50">
-                                                <span className="text-[10px] font-black text-gray-900">{p.timeLeft}h</span>
+                                            <span className="truncate max-w-[120px] font-black text-gray-800 text-sm dark:text-gray-100">{p.name || "New Project"}</span>
+                                            <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white shadow-sm border border-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                                                <span className="text-[10px] font-black text-gray-900 dark:text-gray-100">{p.timeLeft}h</span>
                                                 <Clock className="w-2.5 h-2.5 text-gray-400" />
                                             </div>
                                         </button>
@@ -521,7 +521,7 @@ export function HeroWave({
                                                 e.stopPropagation();
                                                 onDeleteProject?.(p.id);
                                             }}
-                                            className="absolute -right-2 -top-2 w-6 h-6 rounded-full bg-white shadow-md border border-gray-100 text-gray-400 hover:text-red-500 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-all active:scale-95"
+                                            className="absolute -right-2 -top-2 w-6 h-6 rounded-full bg-white shadow-md border border-gray-100 text-gray-400 hover:text-red-500 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-all active:scale-95 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                                         >
                                             <Trash2 className="w-3 h-3" />
                                         </button>
@@ -538,13 +538,17 @@ export function HeroWave({
 }
 
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
+    const { isDark } = useTheme();
     return (
-        <div className="flex flex-col items-center bg-white/40 backdrop-blur-sm hover:bg-white p-10 rounded-[2.5rem] border border-gray-50 hover:border-gray-200 transition-all duration-500 group shadow-sm hover:shadow-2xl hover:shadow-gray-200/50 hover:-translate-y-2">
-            <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+        <div className={`flex flex-col items-center p-10 rounded-[2.5rem] border transition-all duration-500 group shadow-sm hover:shadow-2xl hover:-translate-y-2 ${isDark
+            ? 'bg-gray-900/40 border-gray-800 hover:bg-gray-900 hover:border-gray-700 hover:shadow-gray-900/40'
+            : 'bg-white/40 border-gray-50 hover:bg-white hover:border-gray-200 hover:shadow-gray-200/50'}`}
+        >
+            <div className={`w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ${isDark ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-100'}`}>
                 {icon}
             </div>
-            <h3 className="text-xl font-black text-gray-900 mb-3">{title}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed font-medium">{desc}</p>
+            <h3 className={`text-xl font-black mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
+            <p className={`text-sm leading-relaxed font-medium ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>{desc}</p>
         </div>
     );
 }
